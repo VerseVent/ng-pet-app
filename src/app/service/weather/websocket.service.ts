@@ -40,18 +40,22 @@ export class WebsocketService {
       ws.onmessage = obs.next.bind(obs);
       ws.onerror = obs.error.bind(obs);
       ws.onclose = obs.complete.bind(obs);
+      
       return ws.close.bind(ws);
     });
     let observer: Observer<MessageEvent> = {
       next: (data: MessageEvent) => {
         console.log('Message sent to websocket: ', data);
-
         if (ws.readyState === WebSocket.OPEN) {
           ws.send(JSON.stringify(data));
         }
       },
-      error: (err: any): void => {},
-      complete: (): void => {},
+      error: (err: any): void => {
+        console.log('ERROR::Websocket: ', err);
+      },
+      complete: (): void => {
+        console.log('COMPLETE::Websocket: ');
+      },
     };
     return new AnonymousSubject<MessageEvent>(observer, observable);
   }

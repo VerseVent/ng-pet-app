@@ -15,7 +15,6 @@ export const WEATHER_FEATURE = 'weather';
 export const weatherReducer = createReducer(
   weatherState,
   on(weatherActions.setSettings, (state, { city, isNewsletter }) => {
-    debugger;
     return {
       ...state,
       city,

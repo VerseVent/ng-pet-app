@@ -26,9 +26,7 @@ export class WeatherGuard implements CanActivate {
         if (res) {
           const userSettings: void | ISetting =
             this.storageService.getUserSettings();
-          debugger;
           if (userSettings) {
-            debugger;
 
             this.store.dispatch(setSettings(userSettings));
           }

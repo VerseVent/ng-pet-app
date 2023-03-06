@@ -2,16 +2,12 @@ import {
   Component,
   OnInit,
   OnDestroy,
-  OnChanges,
-  SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { combineLatest, Observable, Subject, of } from 'rxjs';
-import { ISetting } from 'src/app/interfaces/ISetting';
 import {
   debounceTime,
   distinctUntilChanged,
-  filter,
   map,
   tap,
   switchMap,
@@ -86,21 +82,12 @@ export class WeatherUserSettingsComponent implements OnInit, OnDestroy {
     this.destroy$.next(true);
   }
 
-  private _filter(value: string) {
-    const filterValue = value.toLowerCase();
-
-    // const filteredItems = this.filteredCities$.filter((city) =>
-    // city.toLowerCase().includes(filterValue)
-    // );
-    // return filteredItems;
-  }
 
   selectFilteredItem(cityItem: MatAutocompleteSelectedEvent) {
     this.cityControl?.setValue(cityItem.option.value);
   }
 
   sendSettings() {
-    debugger;
     this.store$.dispatch(setSettings(this.settingsForm.value));
   }
 }

@@ -2,6 +2,8 @@
   <app-header></app-header>
   <app-loader *ngIf="isLoading$ | async; else routerContent"></app-loader>
   <ng-template #routerContent>
-    <router-outlet ></router-outlet>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
   </ng-template>
 </div>

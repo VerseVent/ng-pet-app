@@ -16,18 +16,11 @@ export class UiGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     this.store.dispatch(new LOAD.StartLoading());
     return this.guardService.verifyUser().pipe(
-      map((res) => {
-        if (res) {
-          this.store.dispatch(new LOAD.StopLoading());
-          return true;
-        } else {
-
-          this.store.dispatch(new LOAD.StopLoading());
-          return true;
-        }
+      map(() => {
+        this.store.dispatch(new LOAD.StopLoading());
+        return true;
       }),
       catchError(() => {
-        
         this.store.dispatch(new LOAD.StopLoading());
         return of(true);
       })

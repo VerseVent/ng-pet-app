@@ -8,9 +8,12 @@ import { InterceptApi } from './service/interceptor.service';
 import { HeaderComponent } from './components/ui/header/header.component';
 import { StoreModule } from '@ngrx/store';
 import { UserModule } from './components/user/user.module';
-import { SharedModule } from './shared/shared.module';
 import { reducers } from './app.reducer';
 import { LoaderComponent } from './components/ui/loader/loader.component';
+import { WeatherModule } from './components/weather/weather.module';
+import { EffectsModule } from '@ngrx/effects';
+import { LocalStorageService } from './service/storage/localstorage.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, LoaderComponent],
@@ -19,8 +22,10 @@ import { LoaderComponent } from './components/ui/loader/loader.component';
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot(reducers),
-    SharedModule,
     UserModule,
+    WeatherModule,
+    EffectsModule.forRoot([]),
+    BrowserAnimationsModule,
   ],
   providers: [
     {
@@ -28,6 +33,7 @@ import { LoaderComponent } from './components/ui/loader/loader.component';
       useClass: InterceptApi,
       multi: true,
     },
+    LocalStorageService,
   ],
   bootstrap: [AppComponent],
 })

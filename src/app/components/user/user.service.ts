@@ -9,7 +9,6 @@ import { catchError, tap } from 'rxjs/operators';
 import * as Notiflix from 'notiflix';
 import * as AUTH from '../../shared/auth.actions';
 import * as LOAD from '../../shared/stores/loading/loading.actions';
-import { of } from 'rxjs';
 
 @Injectable()
 export class UserService {

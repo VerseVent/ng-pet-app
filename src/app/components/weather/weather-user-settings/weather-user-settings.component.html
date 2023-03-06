@@ -1,0 +1,36 @@
+<div class="setting-form__container">
+  <div class="row pb-4">
+    <p class="col-2 fs-3">User Settings</p>
+    <div class="offset-7 col-3 text-end back-btn-icon" (click)="toWeather()">
+      <mat-icon class="back-btn-icon" aria-hidden="false" aria-label="Example home icon"
+        fontIcon="arrow_back"></mat-icon>
+      <span>Back to weather</span>
+    </div>
+  </div>
+  <form action="" class="setting-form" [formGroup]="settingsForm" (ngSubmit)="sendSettings()">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Pick one" aria-label="city name" formControlName="city"
+        [matAutocomplete]="auto">
+      <mat-label>City</mat-label>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectFilteredItem($event)">
+        <mat-option *ngFor="let cityItem of filteredCities$ | async" [value]="cityItem">
+          {{cityItem}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Select newsletter status</mat-label>
+      <mat-select formControlName="isNewsletter">
+        <mat-option>None</mat-option>
+        <mat-option value="true">Enable</mat-option>
+        <mat-option value="false">Disable</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-button color="primary" class="btn-submit" type="submit" [disabled]="!(isFormFilled$ | async)">Set
+      settings</button>
+  </form>
+  <p>Your city: {{settingsForm.get('city')?.value}}</p>
+  <p>Your isNewsletter: {{settingsForm.get('isNewsletter')?.value}}</p>
+  <p>Your $isFormFilled: {{isFormFilled$ | async}}</p>
+
+</div>

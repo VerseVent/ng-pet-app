@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../../app.reducer';
 import * as AUTH from '../../../shared/auth.actions';
+import * as LOAD from '../../../shared/stores/loading/loading.actions';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -38,6 +40,8 @@ export class LoginComponent {
           localStorage.setItem('auth_token', res.token);
 
           this.router.navigate(['/weather']);
+          this.store.dispatch(new LOAD.StopLoading());
+
           console.log('SUCCESS:: loginComponent, onSubmit: ', res);
 
           Notiflix.Notify.success('Successfully logged in');

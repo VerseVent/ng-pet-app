@@ -4,14 +4,17 @@ import { SignupComponent } from './signup/signup.component';
 import { UserService } from './user.service';
 import { SharedModule } from '../../shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
+import { UiGuard } from 'src/app/guards/ui.guard';
 
 const routes: Routes = [
   {
     path: 'login',
+    canActivate: [UiGuard],
     component: LoginComponent,
   },
   {
     path: 'signup',
+    canActivate: [UiGuard],
     component: SignupComponent,
   },
 ];
@@ -19,6 +22,6 @@ const routes: Routes = [
 @NgModule({
   imports: [SharedModule, RouterModule.forChild(routes)],
   declarations: [LoginComponent, SignupComponent],
-  providers: [UserService],
+  providers: [UserService,  UiGuard],
 })
 export class UserModule {}

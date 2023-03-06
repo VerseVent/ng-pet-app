@@ -6,13 +6,17 @@ import * as LOAD from '../shared/stores/loading/loading.actions';
 import { PagesGuardService } from './guard.service';
 import { map, Observable, catchError, of } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { LocalStorageService } from '../service/storage/localstorage.service';
+import { ISetting } from '../interfaces/ISetting';
+import { setSettings } from '../shared/stores/weather/weather.actions';
 
 @Injectable()
 export class WeatherGuard implements CanActivate {
   constructor(
     private router: Router,
     private guardService: PagesGuardService,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private storageService: LocalStorageService
   ) {}
 
   canActivate(): Observable<boolean> {
@@ -20,6 +24,14 @@ export class WeatherGuard implements CanActivate {
     return this.guardService.verifyUser().pipe(
       map((res) => {
         if (res) {
+          const userSettings: void | ISetting =
+            this.storageService.getUserSettings();
+          debugger;
+          if (userSettings) {
+            debugger;
+
+            this.store.dispatch(setSettings(userSettings));
+          }
           this.store.dispatch(new LOAD.StopLoading());
           return true;
         } else {

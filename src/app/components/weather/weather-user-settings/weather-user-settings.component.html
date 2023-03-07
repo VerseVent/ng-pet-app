@@ -1,8 +1,8 @@
 <div class="setting-form__container">
   <div class="row pb-4">
-    <p class="col-2 fs-3">User Settings</p>
-    <div class="offset-7 col-3 text-end back-btn-icon" (click)="toWeather()">
-      <mat-icon class="back-btn-icon" aria-hidden="false" aria-label="Example home icon"
+    <p class="col-3 fs-3 m-0">User Settings</p>
+    <div class="offset-6 col-3 text-end back-btn-icon" (click)="toWeather()">
+      <mat-icon class="back-btn-icon m-0" aria-hidden="false" aria-label="Example home icon"
         fontIcon="arrow_back"></mat-icon>
       <span>Back to weather</span>
     </div>
@@ -29,8 +29,4 @@
     <button mat-button color="primary" class="btn-submit" type="submit" [disabled]="!(isFormFilled$ | async)">Set
       settings</button>
   </form>
-  <p>Your city: {{settingsForm.get('city')?.value}}</p>
-  <p>Your isNewsletter: {{settingsForm.get('isNewsletter')?.value}}</p>
-  <p>Your $isFormFilled: {{isFormFilled$ | async}}</p>
-
 </div>

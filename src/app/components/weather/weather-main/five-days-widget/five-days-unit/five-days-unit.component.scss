@@ -1,0 +1,10 @@
+.day {
+  &__container {
+    flex: 1;
+    background: #585858;
+    border-radius: 10px;
+    gap: 10px;
+    border: 2px solid rgb(54, 228, 126);
+    height: 400px;
+  }
+}

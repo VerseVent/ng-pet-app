@@ -1,0 +1,37 @@
+<div *ngIf="dayWeather">
+  <mat-card>
+    <mat-card-content class='shadow-sm'>
+      <div class='row'>
+        <div class="col-5">Weather on date: {{ dayWeather.dt*1000 | date:"long" }}</div>
+      </div>
+      <div class="row d-flex justify-content-center gap-4 py-3">
+        <div class="col-2 weather__badge">
+          <h2 class="m-0 d-flex align-items-center gap-1">Templeture <mat-icon class="text-white fs-4 m-0"
+              aria-hidden="false" aria-label="Example home icon" fontIcon="thermostat"></mat-icon></h2>
+          <h3>{{dayWeather.main.temp}} <span>&#8451;</span></h3>
+        </div>
+        <div class="col-2 weather__badge">
+          <h2 class="m-0 d-flex align-items-center gap-1">Feels like <mat-icon class="text-white fs-4 m-0"
+              aria-hidden="false" aria-label="Example home icon" fontIcon="thermostat"></mat-icon></h2>
+          <h3>{{dayWeather.main.feels_like}} <span>&#8451;</span></h3>
+        </div>
+        <div class="col-2 weather__badge">
+          <h2 class="m-0 d-flex align-items-center gap-1">Humidity <mat-icon class="text-white fs-4 m-0"
+              aria-hidden="false" aria-label="Example home icon" fontIcon="air"></mat-icon></h2>
+          <h3>{{dayWeather.main.humidity}}%</h3>
+        </div>
+        <div class="col-2 weather__badge">
+          <h2 class="m-0 d-flex align-items-center gap-1">Wind <mat-icon class="text-white fs-4 m-0" aria-hidden="false"
+              aria-label="Example home icon" fontIcon="speed"></mat-icon></h2>
+          <h3>{{dayWeather.wind.speed}} m/s</h3>
+        </div>
+        <div class="col-2 weather__badge">
+          <h2 class="m-0 d-flex align-items-center gap-1">Pressure <mat-icon class="text-white fs-4 m-0"
+              aria-hidden="false" aria-label="Example home icon" fontIcon="compress"></mat-icon></h2>
+          <h3>{{dayWeather.main.pressure}} Pa</h3>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<app-loader *ngIf="!dayWeather" [isLocalView]="true"></app-loader>

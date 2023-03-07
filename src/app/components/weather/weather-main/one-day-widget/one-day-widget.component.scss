@@ -1,0 +1,10 @@
+.weather {
+  &__badge {
+    padding: 10px 15px;
+    background: rgb(92, 92, 92);
+    border-radius: 10px;
+    border: 2px solid rgb(19, 235, 134);
+    box-shadow: 5px 5px 11px 0px rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+  }
+}

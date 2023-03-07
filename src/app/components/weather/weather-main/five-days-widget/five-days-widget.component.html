@@ -1,0 +1,12 @@
+<div *ngIf="fiveDayWeather">
+  <mat-card>
+    <mat-card-content class='shadow-sm'>
+      <div>{{currentDate}}</div>
+      <div class="d-flex align-items-center justify-content-center">
+        <app-five-days-unit class="day-unit__component" *ngFor="let item of fiveArr;let i = index"
+          flex-wide></app-five-days-unit>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<app-loader *ngIf="!fiveDayWeather" [isLocalView]="true"></app-loader>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { WeatherGuard } from 'src/app/guards/weather.guard';
@@ -20,8 +20,12 @@ import { WeatherService } from 'src/app/service/weather/weather.service';
 import { CityService } from '../../service/weather/city.service';
 import { WeatherMainComponent } from './weather-main/weather-main.component';
 import { MatIconModule } from '@angular/material/icon';
-import { setSettings } from 'src/app/shared/stores/weather/weather.actions';
-import { ISetting } from '../../interfaces/ISetting';
+import { OneDayWidgetComponent } from './weather-main/one-day-widget/one-day-widget.component';
+import { LoaderModule } from '../ui/loader/loader.module';
+import { MatCardModule } from '@angular/material/card';
+import { FiveDaysWidgetComponent } from './weather-main/five-days-widget/five-days-widget.component';
+import { FiveDaysUnitComponent } from './weather-main/five-days-widget/five-days-unit/five-days-unit.component';
+import { FlexDirective } from './weather-main/five-days-widget/flexDirective.directive';
 
 const routes: Routes = [
   {
@@ -53,14 +57,18 @@ const routes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    LoaderModule,
+    MatCardModule,
   ],
   declarations: [
     WeatherBlockComponent,
     WeatherUserSettingsComponent,
     WeatherMainComponent,
+    OneDayWidgetComponent,
+    FiveDaysWidgetComponent,
+    FiveDaysUnitComponent,
+    FlexDirective
   ],
   providers: [WeatherGuard, WebsocketService, WeatherService, CityService],
 })
-export class WeatherModule{
-
-}
+export class WeatherModule {}

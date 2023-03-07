@@ -14,9 +14,10 @@ import { WeatherModule } from './components/weather/weather.module';
 import { EffectsModule } from '@ngrx/effects';
 import { LocalStorageService } from './service/storage/localstorage.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoaderModule } from './components/ui/loader/loader.module';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoaderComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     WeatherModule,
     EffectsModule.forRoot([]),
     BrowserAnimationsModule,
+    LoaderModule,
   ],
   providers: [
     {

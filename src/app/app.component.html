@@ -1,6 +1,6 @@
 <div>
   <app-header></app-header>
-  <app-loader *ngIf="isLoading$ | async; else routerContent"></app-loader>
+  <app-loader *ngIf="isLoading$ | async; else routerContent" [isLocalView]="false"></app-loader>
   <ng-template #routerContent>
     <div class="container">
       <router-outlet></router-outlet>

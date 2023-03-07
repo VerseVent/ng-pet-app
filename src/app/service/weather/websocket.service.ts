@@ -12,14 +12,15 @@ const WEATHER_BASE_URL = environment.WS_URL;
 @Injectable()
 export class WebsocketService {
   private subject: AnonymousSubject<MessageEvent>;
-  public messages: Subject<IMessage>;
+  public messages: Subject<any>;
   private userToken = this.storageService.getUserToken();
-  constructor(private storageService: LocalStorageService) {
+  constructor(private storageService: LocalStorageService) {}
+  
+  public createConnection() {
     this.messages = <Subject<IMessage>>this.connect(
       WEATHER_BASE_URL + `token=${this.userToken}`
     ).pipe(
       map((response: MessageEvent): IMessage => {
-        console.log(response.data);
         let data = JSON.parse(response.data);
         return data;
       })
@@ -27,10 +28,7 @@ export class WebsocketService {
   }
 
   public connect(url: string): AnonymousSubject<MessageEvent> {
-    if (!this.subject) {
-      this.subject = this.create(url);
-      console.log('Successfully connected: ' + url);
-    }
+    this.subject = this.create(url);
     return this.subject;
   }
 
@@ -40,7 +38,7 @@ export class WebsocketService {
       ws.onmessage = obs.next.bind(obs);
       ws.onerror = obs.error.bind(obs);
       ws.onclose = obs.complete.bind(obs);
-      
+
       return ws.close.bind(ws);
     });
     let observer: Observer<MessageEvent> = {

@@ -1,11 +1,17 @@
-<div class="row">
-  <div class="col-2">
+<div class="row d-flex justify-content-between">
+  <div class="col-4">
     <h2>Weather for {{city | async}}</h2>
   </div>
-  <button class="col-1" mat-button (click)="sendMsg('one')">For one day</button>
-  <button class="col-2" mat-button (click)="sendMsg('five')">For five days</button>
-  <div class="offset-6 col-1">
+  <button class="offset-4 col-1" mat-raised-button (click)="sendMsg('one')">Today</button>
+  <button class="col-1" mat-raised-button (click)="sendMsg('five')">Week</button>
+  <div class="col-1 d-flex align-items-center justify-content-end">
     <mat-icon class="setting-btn-icon" aria-hidden="false" aria-label="Example home icon" fontIcon="settings"
       (click)="toSettings()"></mat-icon>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <app-one-day-widget *ngIf="isDayWeather" [dayWeather]="oneDayWeather"></app-one-day-widget>
+    <app-five-days-widget *ngIf="!isDayWeather" [fiveDayWeather]="fiveDayWeather"></app-five-days-widget>
   </div>
 </div>

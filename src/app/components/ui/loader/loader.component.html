@@ -1,6 +1,11 @@
-<div id="backdrop">
+<div *ngIf="!isLocalView" id="backdrop">
   <div class="text-center loading">
     <div class="spinner-border" role="status">
-     </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isLocalView" class="text-center loading">
+  <div class="spinner-border" role="status">
   </div>
 </div>
